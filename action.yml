@@ -4,15 +4,31 @@ author: meself
 branding:
   icon: check-square
   color: purple
+
+inputs:
+  use-compiled-binary:
+    description: |
+      "Use a pre-built Rust binary instead of compiling the script during workflow runtime.
+      Useful if Rust isn't installed in the environment, but requires trust that it was compiled from the same source file"
+    type: boolean
+    default: false
+    required: false
+  
 runs:
   using: "composite"
   steps:
-    - name: Set Rust nightly
-      run: |
-        rustup override set nightly
-        rustup --version
-      shell: bash
 
-    - name: Run Cargo script
-      run: cargo +nightly -Zscript ${{ github.action_path }}/main.rs
+    - name: Compile and run Rust script
+      if: ${{ inputs.use-compiled-binary == false || inputs.use-compiled-binary == 'false' }}
       shell: bash
+      run: |
+        echo "Compiling with Rust nightly version:"
+        rustup --version
+        cargo +nightly -Zscript ${{ github.action_path }}/main.rs
+
+    - name: Run Rust binary
+      if: ${{ inputs.use-compiled-binary == true || inputs.use-compiled-binary == 'true' }}
+      shell: bash
+      run: |
+        echo "Running pre-built Rust binary"
+        ${{ github.action_path }}/pre-built/main
