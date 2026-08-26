@@ -17,10 +17,6 @@ inputs:
 runs:
   using: "composite"
   steps:
-
-    - name: test 
-      shell: bash
-      run: echo ${{ inputs.use-compiled-binary }}
       
     - name: Compile and run Rust script
       if: ${{ inputs.use-compiled-binary == false || inputs.use-compiled-binary == 'false' }}
