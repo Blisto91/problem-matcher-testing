@@ -15,6 +15,7 @@ runs:
   
     - name: Set Rust nightly
       run: |
+        echo $GITHUB_PATH
         rustup override set nightly
         rustup --version
       shell: bash
