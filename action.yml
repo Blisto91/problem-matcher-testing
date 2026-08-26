@@ -7,10 +7,6 @@ branding:
 runs:
   using: "composite"
   steps:
-    - name: Set GitHub Path
-      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
-      shell: bash
-  
     - name: Set Rust nightly
       run: |
         rustup override set nightly
@@ -18,5 +14,5 @@ runs:
       shell: bash
 
     - name: Run Cargo script
-      run: cargo +nightly -Zscript ${{ github.action_path }}main.rs
+      run: cargo +nightly -Zscript ${{ github.action_path }}/main.rs
       shell: bash
