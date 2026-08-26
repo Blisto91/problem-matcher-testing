@@ -12,10 +12,8 @@ runs:
         echo $GITHUB_PATH
         echo "${{ github.action_path }}" >> "$GITHUB_PATH"
         echo "$HOME/.local/bin" >> "$GITHUB_PATH"
-        echo $ARGGG
+        echo sigh >> $ARGGG
       shell: bash
-      env:
-        ARGGG: "sigh"
   
     - name: Set Rust nightly
       run: |
