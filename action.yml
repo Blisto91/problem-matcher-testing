@@ -14,5 +14,8 @@ runs:
       shell: bash
 
     - name: Run Cargo script
-      run: cargo +nightly -Zscript main.rs
+      run: |
+        pwd
+        ls
+        cargo +nightly -Zscript main.rs
       shell: bash
