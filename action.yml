@@ -1,0 +1,18 @@
+name: Some cursed problem matcher
+description: Just messing about
+author: meself
+branding:
+  icon: check-square
+  color: purple
+runs:
+  using: "composite"
+  steps:
+    - name: Set Rust nightly
+      run: |
+        rustup override set nightly
+        rustup --version
+      shell: bash
+
+    - name: Run Cargo script
+      run: cargo +nightly -Zscript main.rs
+      shell: bash
