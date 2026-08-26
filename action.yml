@@ -10,19 +10,20 @@ runs:
     - name: Set GitHub Path
       run: |
         echo $GITHUB_PATH
-        echo "${{ github.action_path }}" >> $GITHUB_PATH
+        echo "${{ github.action_path }}" >> "$GITHUB_PATH"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
       shell: bash
   
     - name: Set Rust nightly
       run: |
-        echo $GITHUB_PATH
+        echo "$GITHUB_PATH"
         rustup override set nightly
         rustup --version
       shell: bash
 
     - name: Run Cargo script
       run: |
-        echo $GITHUB_PATH
+        echo "$GITHUB_PATH"
         pwd
         ls
         cargo +nightly -Zscript main.rs
