@@ -30,7 +30,8 @@ runs:
       if: ${{ inputs.use-compiled-binary == true || inputs.use-compiled-binary == 'true' }}
       shell: bash
       run: |
-        ls ${{ github.action_path }}
-        ls ${{ github.action_path }}/pre-built
+        echo ${{ github.action_path }}
+        cd ${{ github.action_path }}
+        ls
         echo "Running pre-built Rust binary"
         ${{ github.action_path }}/pre-built/main
