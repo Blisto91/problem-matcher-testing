@@ -14,7 +14,7 @@ jobs:
 
       - name: Compile script
         shell: bash
-        run: cargo main.rs
+        run: cargo +nightly -Zscript ./main.rs
         env:
           GITHUB_ACTION_PATH: ${{ github.workspace }}
           RUSTFLAGS: "-Ztime-passes"
