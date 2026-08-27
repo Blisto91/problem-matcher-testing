@@ -14,7 +14,7 @@ jobs:
       - name: Build
         run: |
           cargo +nightly build -Zscript -Zunstable-options --manifest-path $GITHUB_WORKSPACE/main.rs --artifact-dir $GITHUB_WORKSPACE/artifact/
-          objdump -T artifact/main | grep GLIBC | sed 's/.*GLIBC_\([.0-9]*\).*/\1/g' | sort -Vu
+          echo objdump -T artifact/main | grep GLIBC | sed 's/.*GLIBC_\([.0-9]*\).*/\1/g' | sort -Vu
 
       - name: Upload artifacts
         id: upload-artifacts
