@@ -12,13 +12,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: test
-        shell: bash
-        run: rustup toolchain install nightly-2026-08-27
-
       - name: Compile script
         shell: bash
-        run: cargo +nightly-2026-08-27 -Zscript ./main.rs
+        run: cargo run
         env:
           GITHUB_ACTION_PATH: ${{ github.workspace }}
           RUSTFLAGS: "-Ztime-passes"
