@@ -1,0 +1,24 @@
+name: Build binary
+
+on: [push, pull_request, workflow_dispatch]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: rust:bullseye
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Build
+        run: |
+          cargo +nightly build -Zscript -Zunstable-options --manifest-path $GITHUB_WORKSPACE/main.rs --artifact-dir $GITHUB_WORKSPACE/artifact/
+          objdump -T artifact/main | grep GLIBC | sed 's/.*GLIBC_\([.0-9]*\).*/\1/g' | sort -Vu
+
+      - name: Upload artifacts
+        id: upload-artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          path: artifact/main
+          if-no-files-found: error
