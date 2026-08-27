@@ -9,16 +9,14 @@ jobs:
       image: rust:bullseye
 
     steps:
-      - name: Update packages
-        shell: bash
-        run: apt update | apt upgrade
-
       - name: Checkout code
         uses: actions/checkout@v7
 
       - name: Compile script
         shell: bash
         run: cargo +nightly -Zscript ./main.rs
+        env:
+          GITHUB_ACTION_PATH: $GITHUB_WORKSPACE
 
   Arch-Linux:
     runs-on: ubuntu-latest
@@ -26,9 +24,9 @@ jobs:
       image: archlinux/archlinux:base-devel
 
     steps:
-      - name: Update packages
+      - name: Install Rust
         shell: bash
-        run: sudo pacman -Syu --needed --noconfirm rust 
+        run: sudo pacman -Syu --needed --noconfirm rustup
 
       - name: Checkout code
         uses: actions/checkout@v7
@@ -36,3 +34,5 @@ jobs:
       - name: Compile script
         shell: bash
         run: cargo +nightly -Zscript ./main.rs
+        env:
+          GITHUB_ACTION_PATH: $GITHUB_WORKSPACE
