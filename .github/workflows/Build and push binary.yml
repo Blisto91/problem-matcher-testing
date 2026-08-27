@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: rust:bullseye
+      options: --user 1001
 
     steps:
       - name: Checkout code
