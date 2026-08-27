@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: rust:bullseye
+      options: --user 1001
 
     steps:
       - name: Checkout code
@@ -22,6 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: archlinux/archlinux:base-devel
+      options: --user 1001
 
     steps:
       - name: Install Rust
