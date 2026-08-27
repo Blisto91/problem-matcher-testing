@@ -21,8 +21,7 @@ runs:
       if: ${{ inputs.use-compiled-binary == false || inputs.use-compiled-binary == 'false' }}
       shell: bash
       run: |
-        echo "Compiling with Rust nightly version:"
-        rustup --version
+        echo "Compiling with Rust nightly"
         cargo +nightly -Zscript ${{ github.action_path }}/main.rs
 
     - name: Run Rust binary
