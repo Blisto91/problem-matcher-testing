@@ -1,0 +1,38 @@
+name: Build binary
+
+on: [push, pull_request]
+
+jobs:
+  Debian Bullseye:
+    runs-on: ubuntu-latest
+    container:
+      image: rust:bullseye
+
+    steps:
+      - name: Update packages
+        shell: bash
+        run: sudo apt update | sudo apt upgrade
+
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Compile script
+        shell: bash
+        run: cargo +nightly -Zscript ./main.rs
+
+  Arch Linux:
+    runs-on: ubuntu-latest
+    containter:
+      image: archlinux/archlinux:base-devel
+
+    steps:
+      - name: Update packages
+        shell: bash
+        run: sudo pacman -Syu rust
+
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Compile script
+        shell: bash
+        run: cargo +nightly -Zscript ./main.rs
