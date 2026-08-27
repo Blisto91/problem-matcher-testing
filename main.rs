@@ -1,7 +1,7 @@
 #!/usr/bin/env -S cargo +nightly -Zscript
 ---cargo
 [package]
-edition = "2018"
+edition = "2024"
 [dependencies]
 ---
 
