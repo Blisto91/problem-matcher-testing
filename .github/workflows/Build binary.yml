@@ -20,7 +20,7 @@ jobs:
           ./configure --enable-local
           make
           mkdir -p ./src
-          curl -L --http1.1 -H "User-Agent: Mozilla/5.0" -o ./src/ https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.13.11.tar.xz
+          curl -L --http1.1 -H "User-Agent: Mozilla/5.0" -o ./src/linux-3.13.11.tar.xz https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.13.11.tar.xz
           ./ct-ng x86_64-ubuntu14.04-linux-gnu
           ./ct-ng build
           chmod u+w  $GITHUB_WORKSPACE/x86_64-ubuntu14.04-linux-gnu
