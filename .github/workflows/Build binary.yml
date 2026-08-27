@@ -5,26 +5,10 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: rust:bullseye
 
     steps:
-      - name: Install crosstool-ng dependencies
-        shell: bash
-        run: sudo apt install build-essential help2man libtool-bin libtool-doc
-          
-      - name: Setup crosstool-ng
-        shell: bash
-        run: |
-          wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.29.0.tar.xz
-          tar -xJf crosstool-ng-1.29.0.tar.xz
-          cd crosstool-ng-1.29.0
-          ./configure --enable-local
-          make
-          mkdir -p $HOME/src
-          curl --http1.1 -L -O --output-dir $HOME/src https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.15.209.tar.xz
-          ./ct-ng x86_64-ubuntu20.04-linux-gnu
-          ./ct-ng build
-          # chmod u+w  $GITHUB_WORKSPACE/x86_64-ubuntu14.04-linux-gnu
-    
       - name: Checkout code
         uses: actions/checkout@v7
 
