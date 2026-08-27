@@ -2,11 +2,14 @@ name: Build and push binary
 on: workflow_dispatch
 
 jobs:
-  build:
+  Build-and-push:
+    name: Build and push binary
     runs-on: ubuntu-latest
     container:
       image: rust:bullseye
       options: --user 1001
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout code
