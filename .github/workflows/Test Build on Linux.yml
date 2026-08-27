@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Update packages
         shell: bash
-        run: sudo apt update | sudo apt upgrade
+        run: apt update | apt upgrade
 
       - name: Checkout code
         uses: actions/checkout@v7
@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Update packages
         shell: bash
-        run: sudo pacman -Syu rust
+        run: sudo pacman -Syu --needed --noconfirm rust 
 
       - name: Checkout code
         uses: actions/checkout@v7
