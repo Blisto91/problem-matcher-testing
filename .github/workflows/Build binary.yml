@@ -5,9 +5,26 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: rust:bullseye
 
     steps:
+      - name: Install crosstool-ng dependencies
+        shell: bash
+        run: | 
+          sudo apt install build-essential autoconf bison flex texinfo \
+          help2man gawk libtool libtool-bin libtool-doc libncurses5-dev python3-dev \
+          python3-distutils git unzip
+    
+      - name: Setup crosstool-ng
+        shell: bash
+        run: |
+          wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.29.0.tar.xz | tar -xJf -
+          cd crosstool-ng-1.29.0
+          ./configure --enable-local
+          make
+          ./ct-ng x86_64-ubuntu14.04-linux-gnu
+          ./ct-ng build
+          chmod u+w  $GITHUB_WORKSPACE/x86_64-ubuntu14.04-linux-gnu
+    
       - name: Checkout code
         uses: actions/checkout@v7
 
