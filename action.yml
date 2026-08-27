@@ -29,12 +29,5 @@ runs:
       if: ${{ inputs.use-compiled-binary == true || inputs.use-compiled-binary == 'true' }}
       shell: bash
       run: |
-        ldd --version ldd
-        echo "1"
-        echo ${{ github.action_path }}
-        echo "2"
-        echo $GITHUB_ACTION_PATH
         echo "Running pre-built Rust binary"
         $GITHUB_ACTION_PATH/pre-built/main
-        echo "3"
-        echo ${GITHUB_ACTION_PATH}
