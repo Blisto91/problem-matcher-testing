@@ -1,7 +1,6 @@
 ---cargo
 [package]
 edition = "2024"
-[dependencies]
 ---
 
 use std::env;
