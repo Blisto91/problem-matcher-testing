@@ -19,7 +19,7 @@ jobs:
           cd crosstool-ng-1.29.0
           ./configure --enable-local
           make
-          ./ct-ng x86_64-ubuntu16.04-linux-gnu
+          ./ct-ng x86_64-ubuntu22.04-linux-gnu
           ./ct-ng build
           chmod u+w  $GITHUB_WORKSPACE/x86_64-ubuntu14.04-linux-gnu
     
