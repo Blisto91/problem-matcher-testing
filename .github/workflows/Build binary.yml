@@ -14,9 +14,9 @@ jobs:
       - name: Setup crosstool-ng
         shell: bash
         run: |
-          git clone https://github.com/crosstool-ng/crosstool-ng
-          cd crosstool-ng
-          ./bootstrap
+          wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.29.0.tar.xz
+          tar -xJf crosstool-ng-1.29.0.tar.xz
+          cd crosstool-ng-1.29.0
           ./configure --enable-local
           make
           mkdir -p ./src
