@@ -19,7 +19,7 @@ jobs:
           cd crosstool-ng-1.29.0
           ./configure --enable-local
           make
-          wget https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.19.14.tar.xz
+          curl --http1.1 -L -O https://cdn.kernel.org/pub/linux/kernel/v6.x/linux-6.19.14.tar.xz
           ./ct-ng x86_64-ubuntu22.04-linux-gnu
           ./ct-ng build
           chmod u+w  $GITHUB_WORKSPACE/x86_64-ubuntu14.04-linux-gnu
