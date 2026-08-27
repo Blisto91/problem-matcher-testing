@@ -9,9 +9,7 @@ jobs:
     steps:
       - name: Install crosstool-ng dependencies
         shell: bash
-        run: | 
-          sudo apt install build-essential texinfo help2man gawk \
-          libtool-bin libtool-doc libncurses5-dev python3-dev python3-setuptools
+        run: sudo apt install build-essential help2man libtool-bin libtool-doc
           
       - name: Setup crosstool-ng
         shell: bash
@@ -22,7 +20,7 @@ jobs:
           ./configure --enable-local
           make
           mkdir -p ./src
-          wget -P ./src/ https://www.cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.13.11.tar.xz
+          wget -P ./src/ https://cdn.kernel.org/pub/linux/kernel/v3.x/linux-3.13.11.tar.xz
           ./ct-ng x86_64-ubuntu14.04-linux-gnu
           ./ct-ng build
           chmod u+w  $GITHUB_WORKSPACE/x86_64-ubuntu14.04-linux-gnu
