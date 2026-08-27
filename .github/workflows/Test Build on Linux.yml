@@ -1,4 +1,4 @@
-name: Build binary
+name: Test Build on Linux
 
 on: [push, pull_request]
 
