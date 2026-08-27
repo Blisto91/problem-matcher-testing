@@ -19,9 +19,7 @@ jobs:
           cd crosstool-ng-1.29.0
           ./configure --enable-local
           make
-          mkdir -p ./src
-          wget -P ./src/ --secure-protocol=TLSv1_2 https://mirrors.edge.kernel.org/pub/linux/kernel/v3.x/linux-3.13.11.tar.xz
-          ./ct-ng x86_64-ubuntu14.04-linux-gnu
+          ./ct-ng x86_64-ubuntu16.04-linux-gnu
           ./ct-ng build
           chmod u+w  $GITHUB_WORKSPACE/x86_64-ubuntu14.04-linux-gnu
     
