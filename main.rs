@@ -16,7 +16,7 @@ fn main() {
     if let Some(dirs) = skip_dirs {
         gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", &escape_chars(&dirs));
     } else {
-        gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", "//");
+        gcc_matcher = gcc_matcher.replace("(?<!(?:{{SKIP_DIRS}}).+)", ""); //Remove negative lookbehind entirely
     }
 
     fs::write(&matcher_path, gcc_matcher).unwrap();
