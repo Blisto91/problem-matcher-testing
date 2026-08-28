@@ -7,17 +7,19 @@ use std::env;
 use std::fs;
 
 fn main() {
-    let skip_dirs = env::args()
-        .nth(1)
-        .expect("no skip-directories argument given");
+    let skip_dirs = env::args().nth(1);
     let mut matcher_path = env::var("GITHUB_ACTION_PATH").unwrap();
-    matcher_path.push_str("/gcc_matcher.json");
+    matcher_path.push_str("gcc_matcher.json");
 
-    println!("{}", matcher_path);
+    let mut gcc_matcher = fs::read_to_string(&matcher_path).unwrap();
 
-    let old_gcc_matcher = fs::read_to_string(&matcher_path).unwrap();
-    let new_gcc_matcher = old_gcc_matcher.replace("{{SKIP_DIRS}}", &skip_dirs);
-    fs::write("gcc_matcher.json", new_gcc_matcher).unwrap();
+    if let Some(dirs) = skip_dirs {
+        gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", &escape_chars(&dirs));
+    } else {
+        gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", "//");
+    }
+
+    fs::write("gcc_matcher.json", gcc_matcher).unwrap();
 
     println!("::add-matcher::{}", matcher_path);
 }
