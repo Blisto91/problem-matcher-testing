@@ -4,7 +4,7 @@
             "owner": "problem-matcher-testing",
             "pattern": [
                 {
-                    "regexp": "^(?:../../)(.*)(?<!(?:{{SKIP_DIRS}}).+):(\\d+):(\\d+):\\s+(?:fatal\\s+)?(warning|error):\\s+(.*)$",
+                    "regexp": "^(?:../../../)(.*)(?<!(?:{{SKIP_DIRS}}).+):(\\d+):(\\d+):\\s+(?:fatal\\s+)?(warning|error):\\s+(.*)$",
                     "file": 1,
                     "line": 2,
                     "column": 3,
