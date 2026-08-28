@@ -24,7 +24,11 @@ fn main() {
     
     fs::write(&matcher_path, &gcc_matcher).unwrap();
     println!("Full matcher json: {}", gcc_matcher);
-    println!("::add-matcher::{}", matcher_path);
+
+    let mut event_name = env::var("GITHUB_EVENT_NAME").unwrap();
+    if event_name = "pull_request" {
+        println!("::add-matcher::{}", matcher_path);
+    }
 }
 
 fn escape_chars(s: &str) -> String {
