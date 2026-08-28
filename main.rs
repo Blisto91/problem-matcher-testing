@@ -26,7 +26,7 @@ fn main() {
     println!("Full matcher json: {}", gcc_matcher);
 
     let mut event_name = env::var("GITHUB_EVENT_NAME").unwrap();
-    if event_name == "pull_request" {
+    if event_name == "push" {
         println!("::add-matcher::{}", matcher_path);
     }
 }
