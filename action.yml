@@ -13,6 +13,7 @@ inputs:
     required: false
   skip-directories:
     description: "Skip showing output from certain directories"
+    type: string
     required: false
 
 runs:
