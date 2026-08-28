@@ -23,11 +23,12 @@ runs:
       shell: bash
       run: |
         echo "Running pre-built Rust binary"
-        $GITHUB_ACTION_PATH/pre-built/main
+        $GITHUB_ACTION_PATH/pre-built/main ${{ inputs.skip-directories }} 
 
     - name: Compile and run Rust script
       if: ${{ inputs.runtime-compile == true || inputs.runtime-compile == 'true' }}
       shell: bash
       run: |
         echo "Compiling with Rust nightly"
-        cargo +nightly -Zscript ${{ github.action_path }}/main.rs
+        cargo +nightly -Zscript ${{ github.action_path }}/main.rs ${{ inputs.skip-directories }} 
+
