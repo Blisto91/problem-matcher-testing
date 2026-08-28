@@ -14,7 +14,9 @@ fn main() {
     let mut gcc_matcher = fs::read_to_string(&matcher_path).unwrap();
 
     if let Some(dirs) = skip_dirs {
-        gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", &escape_chars(&dirs));
+        let escaped = escape_chars(&dirs);
+        let formatted = format_strings(&escaped);
+        gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", &formatted);
     } else {
         gcc_matcher = gcc_matcher.replace("(?<!(?:{{SKIP_DIRS}}).+)", ""); //Remove negative lookbehind entirely
     }
@@ -33,6 +35,28 @@ fn escape_chars(s: &str) -> String {
             buffer.extend(['\\', c]);
         } else {
             buffer.push(c);
+        }
+    }
+    buffer
+}
+
+fn format_strings(s: &str) -> String {
+    let mut buffer = String::new();
+    let mut lines = s.lines().peekable();
+
+    while let Some(l) = lines.next() {        
+        if !l.starts_with('/') {
+            buffer.push('/');
+        }
+
+        buffer.push_str(l);
+
+        if !l.ends_with('/') {
+            buffer.push('/');
+        }
+
+        if lines.peek().is_some() {
+            buffer.push('|');
         }
     }
     buffer
