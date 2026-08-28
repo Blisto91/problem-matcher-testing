@@ -9,12 +9,10 @@ use std::fs;
 fn main() {
     let skip_dirs = env::args().nth(1).expect("no skip-directories argument given");
     let path = env::var("GITHUB_ACTION_PATH").unwrap();
-    let gcc_matcher = fs::read_to_string(file_path).unwrap();
-
-    if skip_dirs != "" {
-        gcc_matcher.replace("{{SKIP_DIRS}}", skip_dirs);
-        fs:: write("gcc_matcher.json", gcc_matcher);
-    }
+    
+    let gcc_matcher = fs::read_to_string("gcc_matcher.json").unwrap();
+    gcc_matcher.replace("{{SKIP_DIRS}}", &skip_dirs);
+    fs:: write("gcc_matcher.json", gcc_matcher);
 
     println!("::add-matcher::{}/gcc_matcher.json", path);
 }
