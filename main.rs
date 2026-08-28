@@ -19,7 +19,7 @@ fn main() {
         gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", "//");
     }
 
-    fs::write(matcher_path, gcc_matcher).unwrap();
+    fs::write(&matcher_path, gcc_matcher).unwrap();
 
     println!("::add-matcher::{}", matcher_path);
 }
