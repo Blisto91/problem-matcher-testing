@@ -4,6 +4,7 @@ edition = "2024"
 ---
 
 use std::env;
+use std::fs;
   
 fn main() {
     let skip_dirs = env::args().nth(1).expect("no skip-directories argument given");
@@ -12,6 +13,7 @@ fn main() {
 
     if skip_dirs != "" {
         gcc_matcher.replace("{{SKIP_DIRS}}", skip_dirs);
+        fs:: write("gcc_matcher.json", gcc_matcher);
     }
 
     println!("::add-matcher::{}/gcc_matcher.json", path);
