@@ -21,9 +21,9 @@ fn main() {
         gcc_matcher = gcc_matcher.replace("(?<!(?:{{SKIP_DIRS}}).+)", ""); //Remove negative lookbehind entirely
     }
 
-    println!("Full matcher json: {}", &gcc_matcher);
-    fs::write(&matcher_path, gcc_matcher).unwrap();
-
+    
+    fs::write(&matcher_path, &gcc_matcher).unwrap();
+    println!("Full matcher json: {}", gcc_matcher);
     println!("::add-matcher::{}", matcher_path);
 }
 
