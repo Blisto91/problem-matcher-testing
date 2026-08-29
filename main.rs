@@ -1,6 +1,8 @@
 ---cargo
 [package]
 edition = "2024"
+[dependencies]
+ureq = "3.4.0"
 ---
 
 use std::env;
