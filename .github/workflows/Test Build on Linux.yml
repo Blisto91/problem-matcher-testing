@@ -21,6 +21,13 @@ jobs:
           GITHUB_ACTION_PATH: ${{ github.workspace }}
           CARGO_TARGET_DIR: ${{ github.workspace }}
 
+      - name: Upload artifacts
+        id: upload-artifacts
+        uses: actions/upload-artifact@v7
+        with:
+          path: cargo-timings/
+          if-no-files-found: error
+
   Arch-Linux:
     runs-on: ubuntu-latest
     container:
