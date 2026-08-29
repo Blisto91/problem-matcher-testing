@@ -18,7 +18,7 @@ fn main() {
         let formatted = format_strings(&escaped);
         gcc_matcher = gcc_matcher.replace("{{SKIP_DIRS}}", &formatted);
     } else {
-        gcc_matcher = gcc_matcher.replace("(?<!(?:{{SKIP_DIRS}}).+)", ""); //Remove negative lookbehind entirely
+        gcc_matcher = gcc_matcher.replace("(?!(?:{{SKIP_DIRS}}))", ""); //Remove negative lookahead entirely
     }
 
     
