@@ -2,7 +2,7 @@
 [package]
 edition = "2024"
 [dependencies]
-minreq = { version = "3.0.0", features = ["https-native-tls"] }
+minreq = { version = "3.0.0", features = ["https-openssl"] }
 ---
 
 use std::env;
