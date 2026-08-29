@@ -2,7 +2,7 @@
 [package]
 edition = "2024"
 [dependencies]
-curl = "0.4.50"
+minreq = { version = "3.0.0", features = ["https"] }
 ---
 
 use std::env;
