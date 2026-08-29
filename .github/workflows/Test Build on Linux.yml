@@ -15,10 +15,8 @@ jobs:
       - name: Compile script
         shell: bash
         run: |
-          cargo +nightly -Zscript -Zunstable-options ./main.rs "" --timings
+          cargo +nightly build -Zscript --manifest-path $GITHUB_WORKSPACE/main.rs --timings
           ls
-          ls debug
-          ls 7319c893c13dd844
         env:
           GITHUB_ACTION_PATH: ${{ github.workspace }}
           CARGO_TARGET_DIR: ${{ github.workspace }}
