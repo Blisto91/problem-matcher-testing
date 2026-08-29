@@ -2,7 +2,7 @@
 [package]
 edition = "2024"
 [dependencies]
-ureq = "3.4.0"
+minreq = "3.0.0"
 ---
 
 use std::env;
