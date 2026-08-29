@@ -2,7 +2,7 @@
 [package]
 edition = "2024"
 [dependencies]
-attohttpc = "0.31.0"
+curl = "0.4.50"
 ---
 
 use std::env;
