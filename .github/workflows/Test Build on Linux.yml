@@ -25,8 +25,9 @@ jobs:
         id: upload-artifacts
         uses: actions/upload-artifact@v7
         with:
-          path: cargo-timings/
+          path: cargo-timings/cargo-timing.html
           if-no-files-found: error
+          archive: false
 
   Arch-Linux:
     runs-on: ubuntu-latest
