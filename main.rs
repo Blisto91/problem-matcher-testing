@@ -2,7 +2,7 @@
 [package]
 edition = "2024"
 [dependencies]
-ureq = "3.4.0"
+attohttpc = "0.31.0"
 ---
 
 use std::env;
