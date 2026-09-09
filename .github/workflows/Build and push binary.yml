@@ -22,7 +22,10 @@ jobs:
         shell: bash
         run: |
           cargo build --release --target=x86_64-unknown-linux-musl
-          \cp $GITHUB_WORKSPACE/target/release/problem-matcher-testing $GITHUB_WORKSPACE/pre-built/problem-matcher-testing
+          ls
+          ls target
+          ls target/release
+          \cp target/release/problem-matcher-testing pre-built/problem-matcher-testing
 
       - name: Push
         shell: bash
