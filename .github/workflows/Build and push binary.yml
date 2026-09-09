@@ -5,9 +5,6 @@ jobs:
   Build-and-push:
     name: Build and push binary
     runs-on: ubuntu-latest
-    container:
-      image: rust:bullseye
-      options: --user 1001
     permissions:
       contents: write
 
@@ -15,15 +12,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
+      - name: Setup Rust
+        shell: bash
+        run: |
+          rustup update
+          rustup target add x86_64-unknown-linux-musl
+
       - name: Build
         shell: bash
-        run: cargo +nightly build -Zscript -Zunstable-options --manifest-path $GITHUB_WORKSPACE/main.rs --artifact-dir $GITHUB_WORKSPACE/pre-built
+        run: |
+          cargo --release --target=x86_64-unknown-linux-musl
+          \cp $GITHUB_WORKSPACE/target/release/problem-matcher-testing $GITHUB_WORKSPACE/pre-built/problem-matcher-testing
 
       - name: Push
         shell: bash
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add pre-built/main
+          git add pre-built/problem-matcher-testing
           git commit -m "[Bot] Update pre-built binary"
           git push
