@@ -24,7 +24,7 @@ runs:
       shell: bash
       run: |
         echo "Running pre-built Rust binary"
-        $GITHUB_ACTION_PATH/pre-built/main ${{ inputs.skip-directories }} 
+        $GITHUB_ACTION_PATH/pre-built/problem-matcher-testing ${{ inputs.skip-directories }} 
 
     - name: Compile and run Rust script
       if: ${{ inputs.runtime-compile == true || inputs.runtime-compile == 'true' }}
