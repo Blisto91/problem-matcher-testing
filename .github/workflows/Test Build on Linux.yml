@@ -5,17 +5,21 @@ on: [push, pull_request]
 jobs:
   Debian-Bullseye:
     runs-on: ubuntu-latest
-    container:
-      image: rust:bullseye
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      - name: Compile script
+      - name: Setup Rust
         shell: bash
         run: |
-          cargo +nightly build -Zscript --manifest-path $GITHUB_WORKSPACE/main.rs --timings
+          rustup update
+          rustup target add x86_64-unknown-linux-musl
+
+      - name: Build
+        shell: bash
+        run: |
+          cargo build --target=x86_64-unknown-linux-musl --timings
           ls
         env:
           GITHUB_ACTION_PATH: ${{ github.workspace }}
@@ -28,25 +32,3 @@ jobs:
           path: cargo-timings/cargo-timing.html
           if-no-files-found: error
           archive: false
-
-  Arch-Linux:
-    runs-on: ubuntu-latest
-    container:
-      image: archlinux/archlinux:base-devel
-
-    steps:
-      - name: Install Rust
-        shell: bash
-        run: sudo pacman -Syu --needed --noconfirm rustup
-
-      - name: Checkout code
-        uses: actions/checkout@v7
-
-      - name: Compile script
-        shell: bash
-        run: |
-          cargo +nightly -Zscript ./main.rs "" --timings
-          ls
-        env:
-          GITHUB_ACTION_PATH: ${{ github.workspace }}
-          CARGO_TARGET_DIR: ${{ github.workspace }}
