@@ -12,18 +12,11 @@ jobs:
 
       - name: Setup Rust
         shell: bash
-        run: |
-          rustup update
-          rustup target add x86_64-unknown-linux-musl
+        run: rustup update
 
       - name: Build
         shell: bash
-        run: |
-          cargo build --target=x86_64-unknown-linux-musl --timings
-          ls
-        env:
-          GITHUB_ACTION_PATH: ${{ github.workspace }}
-          CARGO_TARGET_DIR: ${{ github.workspace }}
+        run: cargo build --timings
 
       - name: Upload artifacts
         id: upload-artifacts
