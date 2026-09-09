@@ -1,0 +1,10 @@
+[package]
+name = "problem-matcher-testing"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+
+[[bin]]
+name = "problem-matcher-testing"
+path = "main.rs"
