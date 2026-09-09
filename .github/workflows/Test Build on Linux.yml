@@ -3,7 +3,7 @@ name: Test Build on Linux
 on: [push, pull_request]
 
 jobs:
-  Debian-Bullseye:
+  Build-on-Linux:
     runs-on: ubuntu-latest
 
     steps:
