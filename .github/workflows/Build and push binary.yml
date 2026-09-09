@@ -22,10 +22,7 @@ jobs:
         shell: bash
         run: |
           cargo build --release --target=x86_64-unknown-linux-musl
-          ls
-          ls target
-          ls target/release
-          \cp target/release/problem-matcher-testing pre-built/problem-matcher-testing
+          \cp target/x86_64-unknown-linux-musl/release/problem-matcher-testing pre-built/problem-matcher-testing
 
       - name: Push
         shell: bash
