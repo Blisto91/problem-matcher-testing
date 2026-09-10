@@ -17,8 +17,6 @@ jobs:
       - name: Build
         shell: bash
         run: cargo build --timings
-        env:
-          AWS_LC_SYS_SMALL: 1
 
       - name: Upload artifacts
         id: upload-artifacts
