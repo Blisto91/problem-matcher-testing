@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 minreq = { version = "3.0.0", features = ["https-rustls"] }
-jsonic = "0.2.14"
+tinyjson = "2.5.1"
 
 [[bin]]
 name = "problem-matcher-testing"
