@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 minreq = { version = "3.0.0", features = ["https-rustls"] }
-jsonc-parser = { version = "0.33.1", features = ["cst"] }
+miniserde = "0.1.46"
 
 [[bin]]
 name = "problem-matcher-testing"
