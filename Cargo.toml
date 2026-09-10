@@ -5,7 +5,7 @@ edition = "2024"
 
 [dependencies]
 minreq = "3.0.0"
-rustls = { version = "0.23", default-features = false, features = ["ring"] }
+rustls = { version = "0.23", default-features = false, features = ["std", "ring"] }
 miniserde = "0.1.46"
 
 [[bin]]
